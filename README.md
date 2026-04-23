@@ -1,111 +1,224 @@
-# Climora: Atmospheric Intelligence
-> A Context-Aware, Self-Adaptive, Behavior-Aware Forecasting Engine
+# 🌩️ CLIMORA
+### An Atmospheric Intelligence Engine — Context-Aware, Self-Adaptive, Behavior-Aware Weather Forecasting
 
-Climora is a high-performance, production-grade weather prediction platform. Moving far beyond traditional static regression, Climora leverages a custom-built Hybrid Machine Learning pipeline (Ridge Baseline + RandomForest Residuals) fused with an advanced self-learning intelligence layer to deliver unparalleled, context-aware meteorological forecasts.
+> **Climora is not a weather app.**  
+> It is a self-learning, behavior-aware meteorological intelligence system engineered to predict, adapt, and evolve — not just display forecasts.
 
-## 🚀 Core Intelligence Capabilities
+---
 
-1. **Context-Aware Analytics Layer**
-   - Automatically detects structural dataset anomalies using Z-scores.
-   - Computes historical temperature variance to classify data volatility.
-   - Mathematically classifies historical patterns as Stable, Increasing, Decreasing, or Fluctuating.
+## 🌌 Vision
 
-2. **Behavior-Aware Prediction Layer**
-   - **Regime Shift Detection:** Accurately identifies the exact point where a dataset's underlying trend reverses.
-   - **Stability Guards:** Automatically clips final predictions within robust physical boundaries (`mean ± 3*std_dev`) to completely prevent unrealistic drift or exponential explosion from outliers.
-   - **Monotonic Confidence Generation:** Calculates prediction confidence dynamically for each day, ensuring logic-bound monotonic decay across the forecasting horizon.
+Climora is a **next-generation atmospheric prediction platform** built around **data-centric intelligence**, not traditional static models.
 
-3. **Self-Adaptive Feedback System (Dataset Scoped)**
-   - **Isolated Memory:** Hashes every uploaded CSV (SHA-256) to create completely isolated, persistent memory states for independent datasets.
-   - **Autonomous Bias Correction:** Constantly tracks its own residuals (`actual - predicted`). If a systematic overprediction or underprediction bias is detected, the engine mathematically calibrates the final forecast outputs on the fly.
-   - **Self-Improvement Tracking:** Calculates an ongoing Mean Absolute Error (MAE) improvement score to track if its forecasting accuracy is getting better or degrading over time.
+Unlike conventional weather APIs, Climora:
+- Understands historical trends, volatility, and regime shifts
+- Maintains self-learning feedback loops per dataset
+- Operates entirely on uploaded CSV data — no external API dependency
+- Acts as a true intelligent forecasting engine, not just a regression wrapper
 
-4. **Lightning-Fast Performance**
-   - Despite analyzing variance, detecting regime shifts, tracking disk-cached residuals, and running a Hybrid RF Model, the entire pipeline is heavily vectorized with NumPy.
-   - Average execution time (from upload to completed payload delivery): **< 0.5 seconds**.
+This project is engineered with **production-grade architecture**, **hybrid ML pipelines**, and **real-time analytics**, targeting a **research-level design philosophy**.
 
-## 💻 Tech Stack
-- **Backend:** Python, Flask, Waitress
-- **Machine Learning:** Scikit-Learn (RidgeCV, RandomForestRegressor)
-- **Math & Analytics:** NumPy, Pandas
-- **Visualization:** Matplotlib, Seaborn
-- **Frontend:** Vanilla JS, HTML5 Canvas (60FPS Particle Rendering Engine), CSS3
+---
 
-## 🛠️ Installation & Setup
+## 🧠 Core Design Philosophy
 
-1. **Clone the repository:**
-   ```bash
-   git clone https://github.com/yourusername/climora.git
-   cd climora
-   ```
+| Principle | Description |
+|-----------|-------------|
+| Context-Aware Analytics | Automatic anomaly detection, variance classification, and trend recognition |
+| Behavior-Aware Prediction | Regime shift detection with stability-guarded, physically bounded outputs |
+| Self-Adaptive Feedback | Per-dataset isolated memory with autonomous bias correction on every run |
+| Hybrid ML Architecture | Ridge regression baseline fused with RandomForest residual learning |
+| Monotonic Confidence | Dynamically computed, logic-bound confidence decay across forecast horizon |
+| Lightning Performance | Fully vectorized NumPy pipeline — end-to-end in under 0.5 seconds |
 
-2. **Create a virtual environment and activate it:**
-   ```bash
-   python -m venv venv
-   # On Windows
-   venv\Scripts\activate
-   # On macOS/Linux
-   source venv/bin/activate
-   ```
+---
 
-3. **Install the dependencies:**
-   ```bash
-   pip install flask pandas numpy scikit-learn matplotlib seaborn waitress joblib flask-cors
-   ```
+## 🏗️ System Architecture (High Level)
 
-4. **Set Environment Variables:**
-   - `FLASK_SECRET_KEY`: (Required) Set this to a secure random string.
-   - `MODEL_VERSION`: (Optional) Defaults to `6.0`.
-   - `PORT`: (Optional) Defaults to `5000`.
-
-   *Windows PowerShell:*
-   ```powershell
-   $env:FLASK_SECRET_KEY="super_secret_production_key"
-   ```
-   *Linux/macOS:*
-   ```bash
-   export FLASK_SECRET_KEY="super_secret_production_key"
-   ```
-
-5. **Run the Engine:**
-
-   *Windows (from project root):*
-   ```cmd
-   cmd /c "set FLASK_SECRET_KEY=your_secret_key && cd backend && ..\.venv\Scripts\python.exe app.py"
-   ```
-   *Linux/macOS (from project root):*
-   ```bash
-   export FLASK_SECRET_KEY="your_secret_key"
-   cd backend
-   python3 app.py
-   ```
-   *The application will boot using Waitress for production-ready WSGI serving on port 5000.*
-
-## 📂 Project Structure
-
+```text
+CSV Upload
+   ↓
+Analytics Layer
+(Anomaly Detection + Variance + Trend Classification)
+   ↓
+Hybrid ML Core
+(Ridge Baseline + RandomForest Residuals)
+   ↓
+Intelligence Layer
+(Regime Shift Detection + Stability Guards + Confidence Engine)
+   ↓
+Self-Adaptive Feedback Loop
+(SHA-256 Dataset Memory + Bias Correction + MAE Tracking)
+   ↓
+Forecast Output + Visualization
+(Interactive Charts + Structured JSON Payload)
 ```
+
+---
+
+## 🚀 Key Features
+
+### 📡 Context-Aware Analytics Layer
+- Automatically detects structural dataset anomalies using Z-scores
+- Computes historical temperature variance to classify data volatility
+- Mathematically classifies historical patterns as Stable, Increasing, Decreasing, or Fluctuating
+
+### 🧠 Behavior-Aware Prediction Layer
+- **Regime Shift Detection:** Identifies the exact point where a dataset's underlying trend reverses
+- **Stability Guards:** Clips final predictions within robust physical boundaries (`mean ± 3×std_dev`) to prevent unrealistic drift
+- **Monotonic Confidence Generation:** Dynamically computed confidence scores with logic-bound decay per forecast day
+
+### 🔄 Self-Adaptive Feedback System (Dataset Scoped)
+- **Isolated Memory:** SHA-256 hashes every uploaded CSV for completely independent persistent memory states
+- **Autonomous Bias Correction:** Tracks residuals (`actual - predicted`) and auto-calibrates forecasts when systematic bias is detected
+- **Self-Improvement Tracking:** Calculates ongoing MAE improvement score to monitor if forecasting accuracy is getting better or degrading
+
+### ⚡ Lightning-Fast Performance
+- Fully vectorized with NumPy — runs anomaly detection, regime shift analysis, disk-cached residual tracking, and Hybrid RF inference in **< 0.5 seconds**
+
+### 🎨 60FPS Particle Visualization Frontend
+- Real-time HTML5 Canvas particle rendering engine
+- Context-aware weather animations that adapt to forecast conditions
+- Fully responsive, glassmorphism-styled dark UI
+
+---
+
+## 🧩 Project Structure
+
+```text
 Climora/
-├── backend/                  # Python server & ML engine
-│   ├── app.py                # Entry point (app factory + server boot)
-│   ├── config.py             # Environment variable configuration
-│   ├── routes.py             # Flask route handlers
-│   ├── middleware.py         # Rate limiting, request IDs, metrics
-│   ├── requirements.txt      # Python dependencies
+├── backend/                    # Python server & ML intelligence engine
+│   ├── app.py                  # Entry point (app factory + Waitress boot)
+│   ├── config.py               # Environment variable configuration
+│   ├── routes.py               # Flask route handlers
+│   ├── middleware.py           # Rate limiting, request IDs, metrics
+│   ├── requirements.txt        # Python dependencies
 │   ├── ml/
-│   │   ├── hybrid_model.py   # HybridWeatherModel (Ridge + RandomForest)
-│   │   └── intelligence.py   # Analytics, regime detection, feedback loop
+│   │   ├── hybrid_model.py     # HybridWeatherModel (Ridge + RandomForest)
+│   │   └── intelligence.py     # Analytics, regime detection, feedback loop
 │   ├── utils/
-│   │   ├── logger.py         # JSON structured logger
-│   │   ├── cache.py          # Feedback history persistence
-│   │   └── metrics.py        # System metrics & threading locks
+│   │   ├── logger.py           # JSON structured logger
+│   │   ├── cache.py            # Feedback history persistence (disk)
+│   │   └── metrics.py          # System metrics & threading locks
 │   └── visualization/
-│       └── plot.py           # Matplotlib chart generation
-├── frontend/                 # Static assets & HTML templates
-│   ├── templates/            # Jinja2 HTML (index, result)
-│   └── static/               # CSS & JS (60FPS canvas engine)
+│       └── plot.py             # Matplotlib chart generation
+├── frontend/                   # Static assets & Jinja2 HTML templates
+│   ├── templates/
+│   │   ├── index.html          # Upload & control interface
+│   │   └── result.html         # Forecast results & visualization
+│   └── static/
+│       ├── style.css           # Global design system
+│       ├── weather.css         # Weather-specific UI components
+│       └── js/
+│           └── weatherSystem.js  # 60FPS Canvas particle engine
 ├── .gitignore
-├── Procfile                  # Deployment config (Waitress)
+├── Procfile                    # Deployment config (Waitress WSGI)
 └── README.md
 ```
 
 > **Note:** `backend/model_cache/` and `backend/dataset/` are runtime-generated and excluded from git.
+
+---
+
+## 🛠️ Technology Stack
+
+| Category | Technology |
+|----------|------------|
+| Language | Python 3.10+ |
+| Backend Framework | Flask + Waitress (production WSGI) |
+| Machine Learning | Scikit-Learn (RidgeCV, RandomForestRegressor) |
+| Math & Analytics | NumPy, Pandas |
+| Visualization | Matplotlib, Seaborn |
+| Frontend | Vanilla JS, HTML5 Canvas, CSS3 |
+| Intelligence | Custom regime detection, bias correction & confidence engine |
+| Platform | Cross-platform (Windows / Linux / macOS) |
+
+---
+
+## ▶️ How to Run
+
+**1. Clone the repository:**
+```bash
+git clone https://github.com/Yashhh0029/Climora-Atmospheric-Intelligence.git
+cd Climora-Atmospheric-Intelligence
+```
+
+**2. Create and activate a virtual environment:**
+```bash
+python -m venv .venv
+
+# Windows
+.venv\Scripts\activate
+
+# macOS / Linux
+source .venv/bin/activate
+```
+
+**3. Install dependencies:**
+```bash
+pip install -r backend/requirements.txt
+```
+
+**4. Set environment variables:**
+
+*Windows PowerShell:*
+```powershell
+$env:FLASK_SECRET_KEY="your_secret_key"
+```
+
+*Linux / macOS:*
+```bash
+export FLASK_SECRET_KEY="your_secret_key"
+```
+
+**5. Run the engine:**
+
+*Windows:*
+```cmd
+cmd /c "set FLASK_SECRET_KEY=your_secret_key && cd backend && ..\.venv\Scripts\python.exe app.py"
+```
+
+*Linux / macOS:*
+```bash
+cd backend
+python3 app.py
+```
+
+> The application will boot on **http://localhost:5000** using Waitress for production-ready WSGI serving.
+
+---
+
+## 🎯 Use Cases
+- Meteorological research and data analysis
+- Historical climate trend exploration
+- Academic ML pipeline demonstrations
+- Self-learning forecasting system experimentation
+
+---
+
+## 🔮 Future Advancements
+
+Climora is designed as an evolving atmospheric intelligence platform.  
+Future development focuses on deeper data fusion, real-time streams, and autonomous model evolution.
+
+- **Live Weather Data Integration** – Real-time stream ingestion from public meteorological APIs
+- **Multi-Variable Forecasting** – Extend beyond temperature to humidity, pressure, wind, and precipitation
+- **Neural Architecture Upgrade** – LSTM or Transformer-based temporal sequence modeling
+- **Ensemble Intelligence** – Weighted ensemble voting across multiple model families
+- **AutoML Feedback** – Autonomous hyperparameter tuning based on historical MAE trends
+- **Geospatial Awareness** – Location-tagged datasets with regional atmospheric pattern memory
+- **Explainable Forecasts** – Feature attribution and natural language explanation of predictions
+- **Multi-Dataset Comparison** – Side-by-side intelligence analysis across uploaded datasets
+
+> *"Climora is not built to replace meteorologists,  
+but to give them an intelligence layer that never stops learning."*
+
+---
+
+## 👨‍💻 Author
+
+**Yash Kadam**  
+AI & ML Engineer | Builder of Human-Centric, Intelligent Systems
+
+> "I didn't want to build a weather app.  
+> I wanted to build an engine that understands the sky."
