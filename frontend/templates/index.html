@@ -28,7 +28,7 @@
 
     <!-- Hero Landing Section (creates scroll length for auto-transitions) -->
     <section class="hero-section">
-        <h1>Predict the Elements.</h1>
+        <h1>Climora: Predict The Weather</h1>
         <p>Upload historical weather data. Watch the sky respond as you scroll through a full day — from sunrise to midnight.</p>
         <div class="hero-scroll-cue">
             <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -94,7 +94,12 @@
             }
         });
 
-        form.addEventListener('submit', () => {
+        form.addEventListener('submit', (e) => {
+            if (form.dataset.submitting) {
+                e.preventDefault();
+                return;
+            }
+            form.dataset.submitting = "true";
             submitBtn.disabled = true;
             loading.style.display = 'flex';
         });

@@ -44,7 +44,30 @@
                         <span class="metric-value">{{ r2 }}</span>
                     </div>
                 </div>
-                <p class="metric-desc"><small>A lower MSE and an R² closer to 1.0 indicate a better fitting model. Note: Linear Regression is a basic baseline model for time series data.</small></p>
+                <p class="metric-desc"><small>A lower MSE and an R² closer to 1.0 indicate a better fitting model. Note: Random Forest residuals capture non-linear variation over the baseline trend.</small></p>
+            </div>
+
+            <div class="metrics-card">
+                <h3>Forecast Summary</h3>
+                <div class="metrics-grid">
+                    <div class="metric-item">
+                        <span class="metric-label">Trend</span>
+                        <span class="metric-value">{{ trend_label }}</span>
+                    </div>
+                    <div class="metric-item">
+                        <span class="metric-label">Average</span>
+                        <span class="metric-value">{{ avg_temp|round(1) }} °</span>
+                    </div>
+                    <div class="metric-item">
+                        <span class="metric-label">Min</span>
+                        <span class="metric-value">{{ min_temp|round(1) }} °</span>
+                    </div>
+                    <div class="metric-item">
+                        <span class="metric-label">Max</span>
+                        <span class="metric-value">{{ max_temp|round(1) }} °</span>
+                    </div>
+                </div>
+                <p class="metric-desc"><small>Summary of the expected temperature behavior for the upcoming 7 days.</small></p>
             </div>
 
             <div class="chart-card">
